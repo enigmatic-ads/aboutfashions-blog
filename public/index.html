@@ -228,8 +228,6 @@
           <div class="col-lg-12">
             <ul class="social-icons">
               <li><a href="https://www.facebook.com/profile.php?id=61559163404256">Facebook</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Linkedin</a></li>
               <li><a href="https://www.instagram.com/_aboutfashions_/">Instagram</a></li>
             </ul>
           </div>
@@ -313,7 +311,7 @@
                 <span>${post.category}</span>
                 <a href="post-details.html?id=${encodeURIComponent(post.id)}"><h4>${post.title}</h4></a>
                 <ul class="post-info">
-                  <li><a href="#">${post.date}</a></li>
+                  <li>${post.date}</li>
                 </ul>
                 <p>${post.summary}...<a href="post-details.html?id=${encodeURIComponent(post.id)}">Read more</a></p>
                 <div class="post-options">
@@ -327,7 +325,7 @@
                     <div class="col-6">
                       <ul class="post-share">
                         <li><i class="fa fa-share-alt"></i></li>
-                        <li><a href="https://www.facebook.com/profile.php?id=61559163404256">Facebook</a></li>
+                        <li><a href="#">Facebook</a></li>
                         <li><a href="#">Twitter</a></li>
                       </ul>
                     </div>
@@ -373,7 +371,7 @@
       <div class="modal-content p-3">
         <div class="modal-header">
           <h5 class="modal-title" id="loginModalLabel">Admin Login</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form id="loginForm">
