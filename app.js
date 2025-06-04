@@ -68,14 +68,11 @@ app.post('/add-post', checkAuth, (req, res) => {
 app.put('/api/blogs/:id', checkAuth, (req, res) => {
   try {
   const blogId = parseInt(req.params.id, 10);
-  console.log(`Updating blog with ID: ${blogId}`);
   const updatedBlog = req.body;
 
   const data = fs.readFileSync(POSTS_FILE, 'utf-8');
     const posts = JSON.parse(data);
     const index = posts.findIndex(p => p.id == blogId);
-
-    console.log(`Found blog at index: ${index}`);
 
     if (index === -1) return res.status(404).send('Blog not found');
 
@@ -91,13 +88,11 @@ app.put('/api/blogs/:id', checkAuth, (req, res) => {
 app.delete('/api/blogs/:id', checkAuth, (req, res) => {
   try {
     const blogId = parseInt(req.params.id, 10);
-    console.log(`Deleting blog with ID: ${blogId}`);
 
     const data = fs.readFileSync(POSTS_FILE, 'utf-8');
     const posts = JSON.parse(data);
 
     const index = posts.findIndex(post => post.id == blogId);
-    console.log(`Found blog at index: ${index}`);
     if (index === -1) {
       return res.status(404).json({ error: 'Blog not found' });
     }
@@ -131,7 +126,6 @@ const tokenBlacklist = new Set();
 app.post('/api/logout', checkAuth, (req, res) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
-  console.log(`Logging out token: ${token}`);
 
   if (!token) return res.status(401).json({ message: 'No token provided' });
 
