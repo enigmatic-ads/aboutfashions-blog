@@ -133,7 +133,7 @@ app.post('/api/logout', checkAuth, (req, res) => {
     return res.status(403).json({ message: 'Token is already blacklisted' });
   }
 
-  tokenBlacklist.add(token); // Blacklist the token
+  tokenBlacklist.add(token);
   res.json({ message: 'Logged out successfully' });
 });
 
