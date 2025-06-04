@@ -46,6 +46,7 @@ app.get('/posts', (req, res) => {
 
 // Add a new blog post
 app.post('/add-post', checkAuth, (req, res) => {
+  console.log('Adding new post');
   try {
     const data = fs.readFileSync(POSTS_FILE, 'utf-8');
     const posts = JSON.parse(data);
