@@ -11,6 +11,11 @@
 
     <title>AboutFashions</title>
 
+    <!-- Owl Carousel JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -20,8 +25,7 @@
     <link rel="stylesheet" href="assets/css/templatemo-stand-blog.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">                          
 
   </head>
 
@@ -251,34 +255,14 @@
       }
     </script>
 
-    <!-- jQuery FIRST -->
-<script src="vendor/jquery/jquery.min.js"></script>
-
 <!-- Bootstrap -->
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Owl Carousel JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <!-- Your Custom Scripts -->
 <script src="assets/js/custom.js"></script>
 <script src="assets/js/slick.js"></script>
 <script src="assets/js/isotope.js"></script>
 <script src="assets/js/accordions.js"></script>
-
-    <script>
-      $(document).ready(function() {
-        $(".owl-banner").owlCarousel({
-          items: 1,
-          loop: true,
-          autoplay: true,
-          autoplayTimeout: 2000, // 2 seconds
-          autoplayHoverPause: true,
-          dots: true,
-          nav: false
-        });
-      });
-    </script>
 
     <script>
       fetch('posts.json')
@@ -419,6 +403,20 @@ document.getElementById('loginForm').addEventListener('submit', async function (
   }
 });
 </script>
+
+  <script>
+    $(window).on('load', function () {
+      $(".owl-banner").owlCarousel({
+        items: 3,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        dots: true,
+        nav: true
+      });
+    });
+  </script>
 
   </body>
 </html>
