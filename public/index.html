@@ -304,11 +304,11 @@
               </div>
               <div class="down-content">
                 <span>${post.category}</span>
-                <a href="post-details.html?id=${encodeURIComponent(post.id)}"><h4>${post.title}</h4></a>
+                <a href="${encodeURIComponent(post.slug)}"><h4>${post.title}</h4></a>
                 <ul class="post-info">
                   <li>${post.date}</li>
                 </ul>
-                <p>${post.summary}...<a href="post-details.html?id=${encodeURIComponent(post.id)}">Read more</a></p>
+                <p>${post.summary}...<a href="${encodeURIComponent(post.slug)}">Read more</a></p>
                 <div class="post-options">
                   <div class="row">
                     <div class="col-6">
@@ -334,7 +334,7 @@
           posts.slice(0, 3).forEach(post => {
             const sidebarItem = document.createElement('li');
             sidebarItem.innerHTML = `
-            <a href="${post.link}">
+            <a href="${encodeURIComponent(post.slug)}">
               <h5>${post.title}</h5>
               <span>${post.date}</span>
             </a>`;

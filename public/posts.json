@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "slug": "embracing-the-shimmer-a-deep-dive-into-the-enduring-allure-of-metallics-in-fashion",
     "title": "Embracing the Shimmer: A Deep Dive into the Enduring Allure of Metallics in Fashion",
     "image": "assets/images/post01.png",
     "summary": "In the world of fashion, metallics have long held a special allure, captivating designers, celebrities, and fashion enthusiasts alike with their lustrous sheen and eye-catching",
@@ -16,6 +17,7 @@
   },
   {
     "id": "2",
+    "slug": "exploring-the-world-of-street-style-fashion",
     "title": "Exploring the World of Street Style Fashion",
     "image": "assets/images/post02.jpg",
     "summary": "Street style fashion has become a global phenomenon, influencing trends and shaping the way people dress in cities around the world. From the bustling streets",
@@ -31,6 +33,7 @@
   },
   {
     "id": "3",
+    "slug": "seasonal-switch-up-how-to-transition-your-wardrobe-from-winter-to-spring-with-style",
     "title": "Seasonal Switch-Up: How to Transition Your Wardrobe from Winter to Spring with Style",
     "image": "assets/images/post03.jpg",
     "summary": "In the world of fashion, metallics have long held a special allure, captivating designers, celebrities, and fashion enthusiasts alike with their lustrous sheen and eye-catching",
@@ -46,6 +49,7 @@
   },
   {
     "id": "4",
+    "slug": "effortless-elegance-mastering-the-art-of-dressing-well-without-overthinking-it",
     "title": "Effortless Elegance: Mastering the Art of Dressing Well Without Overthinking It",
     "image": "assets/images/post04.jpg",
     "summary": "In a world where fashion trends come and go, there’s something timeless and enduring about effortless elegance. It’s that je ne sais quoi quality that",
@@ -61,6 +65,7 @@
   },
   {
     "id": "5",
+    "slug": "embracing-natural-beauty-promoting-self-confidence-through-minimal-makeup-looks",
     "title": "Embracing Natural Beauty: Promoting Self-Confidence Through Minimal Makeup Looks",
     "image": "assets/images/post05.jpg",
     "summary": "In a world where beauty standards are often dictated by heavily retouched images and unrealistic expectations, embracing natural beauty has become a powerful movement. Minimal",
@@ -76,6 +81,7 @@
   },
   {
     "id": "8",
+    "slug": "reviving-retro-exploring-the-resurgence-of-vintage-fashion",
     "title": "Reviving Retro: Exploring the Resurgence of Vintage Fashion",
     "image": "assets/images/post06.jpg",
     "summary": "In the ever-evolving world of fashion, trends often come full circle, with styles from past decades experiencing a revival and capturing the imagination of a",
@@ -91,6 +97,7 @@
   },
   {
     "id": "9",
+    "slug": "makeup-for-special-occasions-tips-for-looking-flawless-on-your-big-day",
     "title": "Makeup for Special Occasions: Tips for Looking Flawless on Your Big Day",
     "image": "assets/images/post09.jpg",
     "summary": "Special occasions such as weddings, parties, and other significant events call for makeup that enhances your natural beauty and ensures you look and feel your",
@@ -106,6 +113,7 @@
   },
   {
     "id": "10",
+    "slug": "11-tips-for-effective-clothes-shopping",
     "title": "11 Tips for Effective Clothes Shopping",
     "image": "assets/images/post10.jpg",
     "summary": "Bring home clothing that you’ll actually wear by following these shopping tips",
@@ -120,6 +128,7 @@
   },
   {
     "id": "12",
+    "slug": "hello",
     "title": "hello",
     "image": "https://www.aboutfashions.com/wp-content/uploads/2024/03/1649834611_700545721-420x280.jpg",
     "summary": "this is a demo summary",
@@ -132,6 +141,7 @@
   },
   {
     "id": "14",
+    "slug": "makeup-removal-and-skincare-aftercare-the-key-to-healthy-and-radiant-skin",
     "date": "June 3, 2025",
     "title": "Makeup Removal and Skincare Aftercare: The Key to Healthy and Radiant Skin",
     "image": "assets/images/post14.jpg",
