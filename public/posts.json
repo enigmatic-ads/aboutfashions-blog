@@ -127,19 +127,6 @@
     "banner": false
   },
   {
-    "id": "12",
-    "slug": "hello",
-    "title": "hello",
-    "image": "https://www.aboutfashions.com/wp-content/uploads/2024/03/1649834611_700545721-420x280.jpg",
-    "summary": "this is a demo summary",
-    "content": "demo content is working fine",
-    "category": "Fashion",
-    "tags": [
-      "fashion",
-      "beauty"
-    ]
-  },
-  {
     "id": "14",
     "slug": "makeup-removal-and-skincare-aftercare-the-key-to-healthy-and-radiant-skin",
     "date": "June 3, 2025",
