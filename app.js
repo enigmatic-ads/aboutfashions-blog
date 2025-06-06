@@ -142,6 +142,11 @@ function isTokenBlacklisted(token) {
   return tokenBlacklist.has(token);
 }
 
+app.get('/:slug', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'post-details.html'));
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running on Port ${PORT}`);
 });
