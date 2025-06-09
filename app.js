@@ -48,12 +48,14 @@ app.post('/add-post', checkAuth, (req, res) => {
   try {
     const data = fs.readFileSync(POSTS_FILE, 'utf-8');
     const posts = JSON.parse(data);
+    const slug = slugify(req.body.title);
     const newPost = {
       id: (parseInt(posts[posts.length - 1]?.id || '0') + 1).toString(), 
       date: new Date().toLocaleDateString('en-US', {
         year: 'numeric', month: 'long', day: 'numeric'
       }), 
       ...req.body,
+      slug,
     };
 
     posts.push(newPost);
@@ -63,6 +65,16 @@ app.post('/add-post', checkAuth, (req, res) => {
     res.status(500).json({ error: 'Failed to save post.' });
   }
 });
+
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim() 
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+}
 
 app.put('/api/blogs/:id', checkAuth, (req, res) => {
   try {
