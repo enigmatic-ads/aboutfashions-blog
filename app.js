@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -10,7 +11,6 @@ const PORT = 4000;
 
 // Path to posts.json
 const POSTS_FILE = path.join(__dirname, 'public', 'posts.json');
-const SECRET = 'your_jwt_secret';
 const USERS_FILE = './users.json';
 
 // Middleware
@@ -116,7 +116,10 @@ app.post('/api/login', (req, res) => {
   bcrypt.compare(password, user.password, (err, result) => {
     if (!result) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: user.id, username: user.username }, SECRET, { expiresIn: '2h' });
+    const SECRET = process.env.JWT_SECRET;
+    const JWT_EXPIRY = process.env.JWT_EXPIRY;
+
+    const token = jwt.sign({ id: user.id, username: user.username }, SECRET, { expiresIn: JWT_EXPIRY });
     res.json({ token });
   });
 });
