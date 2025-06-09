@@ -11,8 +11,7 @@ const PORT = 4000;
 
 // Path to posts.json
 const POSTS_FILE = path.join(__dirname, 'public', 'posts.json');
-const USERS_FILE = './users.json';
-
+const JWT_SECRET = process.env.JWT_SECRET;
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -27,7 +26,7 @@ function checkAuth(req, res, next) {
   if (!authHeader) return res.status(401).json({ error: 'Missing token' });
 
   const token = authHeader.split(' ')[1];
-  jwt.verify(token, SECRET, (err, user) => {
+  jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ error: 'Invalid token' });
     req.user = user;
     next();
@@ -109,17 +108,20 @@ app.delete('/api/blogs/:id', checkAuth, (req, res) => {
 
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
-  const users = JSON.parse(fs.readFileSync(USERS_FILE, 'utf-8'));
-  const user = users.find(u => u.username === username);
-  if (!user) return res.status(401).json({ error: 'Invalid username or password' });
 
-  bcrypt.compare(password, user.password, (err, result) => {
+  const ADMIN_USERNAME  = process.env.ADMIN_USERNAME;
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+  if (username !== ADMIN_USERNAME) {
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
+
+  bcrypt.compare(password, ADMIN_PASSWORD, (err, result) => {
     if (!result) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const SECRET = process.env.JWT_SECRET;
     const JWT_EXPIRY = process.env.JWT_EXPIRY;
 
-    const token = jwt.sign({ id: user.id, username: user.username }, SECRET, { expiresIn: JWT_EXPIRY });
+    const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: JWT_EXPIRY });
     res.json({ token });
   });
 });
