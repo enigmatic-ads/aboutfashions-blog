@@ -113,7 +113,8 @@
         localStorage.removeItem('token');
         window.location.href = 'index.html';
       } else {
-        alert('Logout failed.');
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
       }
     } catch (err) {
       console.error('Logout error:', err);

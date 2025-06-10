@@ -86,13 +86,12 @@
       const title = document.getElementById("title").value;
       const image = document.getElementById("image").value;
       const summary = document.getElementById("summary").value;
-      const rawContent = quill.root.innerHTML
+      const content = quill.root.innerHTML
         .replace(/<p>/g, '')
         .replace(/<\/p>/g, '<br>')
         .replace(/<h[1-6]>/g, '')
         .replace(/<\/h[1-6]>/g, '')
         .replace(/<p class="ql-align-justify">/g, '');
-      const content = `<p style="text-align: justify;">${rawContent}</p>`;
       const category = document.getElementById("category").value;
       const tags = document.getElementById("tags").value.split(",").map(t => t.trim());
 
