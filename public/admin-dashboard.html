@@ -22,11 +22,30 @@
       <div class="mt-4">
         <button id="viewBlogsBtn" class="btn btn-primary btn-lg m-2">View All Blogs</button>
         <a href="admin-add-blog.html" class="btn btn-primary btn-lg m-2">Add New Blog</a>
+        <button id="addScriptBtn" class="btn btn-primary btn-lg m-2">Add JS Script</button>
       </div>
     </div>
   </section>
 
   <div class="container mt-5" id="blogList" style="display: none;"></div>
+
+  <!-- Hidden JS Script Form -->
+  <div class="container mt-5" id="scriptFormContainer" style="display: none;">
+    <h4>Add JS Script to Site</h4>
+    <form id="scriptForm">
+      <div class="form-group">
+        <label for="scriptContent">JS Script (without &lt;script&gt; tags):</label>
+        <textarea id="scriptContent" class="form-control" rows="10" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="pin">PIN</label>
+        <input id="pin" class="form-control" required />
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Add Script</button>
+      <a href="admin-dashboard.html" class="btn btn-primary mt-2">Close</a>
+    </form>
+    <div id="scriptFormMessage" class="mt-3"></div>
+  </div>
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -72,7 +91,6 @@
   }
 
   function editBlog(id) {
-    // Redirect or open edit UI
     window.location.href = `admin-edit-blog.html?id=${id}`;
   }
 
@@ -95,6 +113,39 @@
       });
     }
   }
+
+  // Add JS Script form
+  document.getElementById('addScriptBtn').addEventListener('click', function () {
+    const formContainer = document.getElementById('scriptFormContainer');
+    formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
+  });
+
+  // Handle JS Script form submission
+  document.getElementById('scriptForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const script = document.getElementById('scriptContent').value;
+    const pin = document.getElementById('pin').value;
+
+    const scriptContent = { script, pin };
+
+    const response = await fetch('/api/add-script', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({ scriptContent })
+    });
+
+    const result = await response.json();
+    const msgDiv = document.getElementById('scriptFormMessage');
+
+    if (result.status === 'success') {
+      msgDiv.innerHTML = '<div class="alert alert-success">Script added successfully!</div>';
+    } else {
+      msgDiv.innerHTML = '<div class="alert alert-danger">Failed to add script.</div>';
+    }
+  });
 </script>
 
 <script>

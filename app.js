@@ -163,6 +163,36 @@ app.get('/:slug', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'post-details.html'));
 });
 
+app.post('/api/add-script', checkAuth, async (req, res) => {
+  const { scriptContent } = req.body;
+  const ADD_SCRIPT_KEY = process.env.ADD_SCRIPT_KEY;
+
+  try {
+    const isMatch = await bcrypt.compare(scriptContent.pin, ADD_SCRIPT_KEY);
+
+    if (!isMatch) {
+      return res.status(401).json({ error: 'Incorrect pin' });
+    }
+
+    const indexPath = path.join(__dirname, 'public', 'index.html');
+    let indexHtml = fs.readFileSync(indexPath, 'utf-8');
+
+    const scriptTag = `\n<script>\n${scriptContent.script}\n</script>\n`; // assuming scriptContent.script
+
+    if (indexHtml.includes(scriptTag)) {
+      return res.json({ status: 'success', message: 'Script already present.' });
+    }
+
+    indexHtml = indexHtml.replace('</body>', `${scriptTag}</body>`);
+
+    fs.writeFileSync(indexPath, indexHtml, 'utf-8');
+
+    return res.json({ status: 'success' });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ status: 'error', message: 'Failed to update index.html' });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on Port ${PORT}`);
