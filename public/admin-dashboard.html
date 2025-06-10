@@ -38,7 +38,7 @@
         <textarea id="scriptContent" class="form-control" rows="10" required></textarea>
       </div>
       <div class="form-group">
-        <label for="pin">PIN</label>
+        <label for="pin">Enter Security PIN</label>
         <input id="pin" class="form-control" required />
       </div>
       <button type="submit" class="btn btn-primary mt-2">Add Script</button>
@@ -53,8 +53,13 @@
   <script>
   document.getElementById('viewBlogsBtn').addEventListener('click', function () {
     fetch('posts.json')
-    .then(response => response.json())
-      .then(data => renderBlogs(data))
+      .then(response => response.json())
+      .then(data => {
+        renderBlogs(data);
+
+        // Hide JS Script form when viewing blogs
+        document.getElementById('scriptFormContainer').style.display = 'none';
+      })
       .catch(err => console.error('Error fetching blogs:', err));
   });
 
@@ -116,9 +121,14 @@
 
   // Add JS Script form
   document.getElementById('addScriptBtn').addEventListener('click', function () {
-    const formContainer = document.getElementById('scriptFormContainer');
-    formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
-  });
+  const formContainer = document.getElementById('scriptFormContainer');
+  const blogList = document.getElementById('blogList');
+
+  blogList.style.display = 'none';
+
+  // Toggle the form
+  formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
+});
 
   // Handle JS Script form submission
   document.getElementById('scriptForm').addEventListener('submit', async function (e) {
