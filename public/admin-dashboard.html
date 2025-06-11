@@ -9,6 +9,37 @@
   <link rel="stylesheet" href="assets/css/templatemo-stand-blog.css">
 </head>
 <body>
+  <script>
+    async function verifyAuth() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/verify-token', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          console.log('Token verification failed');
+          localStorage.removeItem('token');
+          window.location.href = 'index.html';
+        }
+      } catch (err) {
+        console.error('Token verification failed:', err);
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+      }
+    }
+
+    verifyAuth();
+  </script>
+
   <nav class="navbar navbar-light bg-light fixed-top justify-content-end px-3">
     <button id="logoutBtn" class="btn btn-outline-danger">Logout</button>
   </nav>

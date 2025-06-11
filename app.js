@@ -177,7 +177,7 @@ app.post('/api/add-script', checkAuth, async (req, res) => {
     const indexPath = path.join(__dirname, 'public', 'index.html');
     let indexHtml = fs.readFileSync(indexPath, 'utf-8');
 
-    const scriptTag = `\n<script>\n${scriptContent.script}\n</script>\n`; // assuming scriptContent.script
+    const scriptTag = `\n<script>\n${scriptContent.script}\n</script>\n`;
 
     if (indexHtml.includes(scriptTag)) {
       return res.json({ status: 'success', message: 'Script already present.' });
@@ -192,6 +192,10 @@ app.post('/api/add-script', checkAuth, async (req, res) => {
     console.error(err);
     return res.status(500).json({ status: 'error', message: 'Failed to update index.html' });
   }
+});
+
+app.get('/api/verify-token', checkAuth, (req, res) => {
+  res.sendStatus(200);
 });
 
 app.listen(PORT, () => {
