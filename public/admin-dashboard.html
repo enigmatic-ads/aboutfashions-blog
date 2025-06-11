@@ -67,15 +67,26 @@
         <label for="scriptContent">JS Script (without &lt;script&gt; tags):</label>
         <textarea id="scriptContent" class="form-control" rows="10" required></textarea>
       </div>
+
+      <div class="form-group">
+        <label for="position">Script Position</label>
+        <select id="position" class="form-control" required>
+          <option value="">-- Select Position --</option>
+          <option value="head">Inside &lt;head&gt; tag</option>
+          <option value="body">Inside &lt;body&gt; tag</option>
+        </select>
+      </div>
+
       <div class="form-group">
         <label for="pin">Enter Security PIN</label>
         <input id="pin" class="form-control" required />
       </div>
-        <button type="submit" class="btn btn-primary mt-2 mb-2">Add Script</button>
-        <a href="admin-dashboard.html" class="btn btn-primary mt-2 mb-2">Close</a>
-      </div>
+
+      <button type="submit" class="btn btn-primary mt-2 mb-2">Add Script</button>
+      <a href="admin-dashboard.html" class="btn btn-primary mt-2 mb-2">Close</a>
     </form>
   </div>
+
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -165,8 +176,9 @@
     e.preventDefault();
     const script = document.getElementById('scriptContent').value;
     const pin = document.getElementById('pin').value;
+    const position = document.getElementById('position').value;
 
-    const scriptContent = { script, pin };
+    const scriptContent = { script, pin, position };
 
     const response = await fetch('/api/add-script', {
       method: 'POST',
@@ -174,10 +186,11 @@
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
-      body: JSON.stringify({ scriptContent })
+      body: JSON.stringify(scriptContent)
     });
 
     const result = await response.json();
+    console.log('result:', result);
     const msgDiv = document.getElementById('scriptFormMessage');
 
     if (response.ok) {
