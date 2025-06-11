@@ -180,10 +180,16 @@
     const result = await response.json();
     const msgDiv = document.getElementById('scriptFormMessage');
 
-    if (result.status === 'success') {
+    console.log('Server response:', result);
+
+    if (response.ok) {
       msgDiv.innerHTML = '<div class="alert alert-success">Script added successfully!</div>';
     } else {
-      msgDiv.innerHTML = '<div class="alert alert-danger">Failed to add script.</div>';
+      const alertDiv = document.createElement('div');
+      alertDiv.className = 'alert alert-danger';
+      alertDiv.textContent = result.error || 'Failed to add script.';
+      msgDiv.innerHTML = '';
+      msgDiv.appendChild(alertDiv);
     }
   });
 </script>

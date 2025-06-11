@@ -168,10 +168,14 @@ app.post('/api/add-script', checkAuth, async (req, res) => {
   const ADD_SCRIPT_KEY = process.env.ADD_SCRIPT_KEY;
 
   try {
+    if (scriptContent.script.startsWith('<script>')) {
+      return res.status(403).json({ error: 'Error: Script content should not start with <script> tag.' });
+    }
+
     const isMatch = await bcrypt.compare(scriptContent.pin, ADD_SCRIPT_KEY);
 
     if (!isMatch) {
-      return res.status(401).json({ error: 'Incorrect pin' });
+      return res.status(403).json({ error: 'Error: Incorrect pin' });
     }
 
     const indexPath = path.join(__dirname, 'public', 'index.html');
@@ -180,7 +184,7 @@ app.post('/api/add-script', checkAuth, async (req, res) => {
     const scriptTag = `\n<script>\n${scriptContent.script}\n</script>\n`;
 
     if (indexHtml.includes(scriptTag)) {
-      return res.json({ status: 'success', message: 'Script already present.' });
+      return res.json({ status: 'success', message: 'Error: Script already present.' });
     }
 
     indexHtml = indexHtml.replace('</body>', `${scriptTag}</body>`);
