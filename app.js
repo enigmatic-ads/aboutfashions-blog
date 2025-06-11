@@ -184,14 +184,14 @@ app.post('/api/add-script', checkAuth, async (req, res) => {
     const scriptTag = `\n<script>\n${scriptContent.script}\n</script>\n`;
 
     if (indexHtml.includes(scriptTag)) {
-      return res.json({ status: 'success', message: 'Error: Script already present.' });
+      return res.status(400).json({ error: 'Error: Script already present.' });
     }
 
     indexHtml = indexHtml.replace('</body>', `${scriptTag}</body>`);
 
     fs.writeFileSync(indexPath, indexHtml, 'utf-8');
 
-    return res.json({ status: 'success' });
+    return res.json({ status: 'success', message: 'Script added successfully.' });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ status: 'error', message: 'Failed to update index.html' });
