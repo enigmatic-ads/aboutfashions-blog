@@ -26,7 +26,6 @@
         });
 
         if (!response.ok) {
-          console.log('Token verification failed');
           localStorage.removeItem('token');
           window.location.href = 'index.html';
         }
