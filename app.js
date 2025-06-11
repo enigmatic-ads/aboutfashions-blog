@@ -164,34 +164,48 @@ app.get('/:slug', (req, res) => {
 });
 
 app.post('/api/add-script', checkAuth, async (req, res) => {
-  const { scriptContent } = req.body;
+  const { script, pin, position } = req.body;
   const ADD_SCRIPT_KEY = process.env.ADD_SCRIPT_KEY;
 
   try {
-    const isMatch = await bcrypt.compare(scriptContent.pin, ADD_SCRIPT_KEY);
+    if (script.startsWith('<script>')) {
+      return res.status(403).json({ error: 'Error: Script content should not start with <script> tag.' });
+    }
+
+    const isMatch = await bcrypt.compare(pin, ADD_SCRIPT_KEY);
 
     if (!isMatch) {
-      return res.status(401).json({ error: 'Incorrect pin' });
+      return res.status(403).json({ error: 'Error: Incorrect pin' });
     }
 
     const indexPath = path.join(__dirname, 'public', 'index.html');
     let indexHtml = fs.readFileSync(indexPath, 'utf-8');
 
-    const scriptTag = `\n<script>\n${scriptContent.script}\n</script>\n`; // assuming scriptContent.script
+    const scriptWithTag = `\n<script>\n${script}\n</script>\n`;
 
-    if (indexHtml.includes(scriptTag)) {
-      return res.json({ status: 'success', message: 'Script already present.' });
+    if (indexHtml.includes(scriptWithTag)) {
+      return res.status(400).json({ error: 'Error: Script already present.' });
     }
 
-    indexHtml = indexHtml.replace('</body>', `${scriptTag}</body>`);
+    if (position == 'head') {
+      indexHtml = indexHtml.replace('</head>', `${scriptWithTag}</head>`);
+    } else if (position == 'body') {
+      indexHtml = indexHtml.replace('</body>', `${scriptWithTag}<body>`);
+    } else {
+      return res.status(400).json({ error: 'Error: Invalid position specified.' });
+    }
 
     fs.writeFileSync(indexPath, indexHtml, 'utf-8');
 
-    return res.json({ status: 'success' });
+    return res.json({ status: 'success', message: 'Script added successfully.' });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ status: 'error', message: 'Failed to update index.html' });
   }
+});
+
+app.get('/api/verify-token', checkAuth, (req, res) => {
+  res.sendStatus(200);
 });
 
 app.listen(PORT, () => {

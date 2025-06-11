@@ -9,10 +9,40 @@
   <link rel="stylesheet" href="assets/css/templatemo-stand-blog.css">
 </head>
 <body>
+  <script>
+    async function verifyAuth() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/verify-token', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          localStorage.removeItem('token');
+          window.location.href = 'index.html';
+        }
+      } catch (err) {
+        console.error('Token verification failed:', err);
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+      }
+    }
+
+    verifyAuth();
+  </script>
+
   <nav class="navbar navbar-light bg-light fixed-top justify-content-end px-3">
     <button id="logoutBtn" class="btn btn-outline-danger">Logout</button>
   </nav>
-  <section class="page-heading" style="margin-top: 100px;">
+  <section class="page-heading" style="margin-top: 60px;">
     <div class="container text-center">
       <div class="text-content">
       <h2>Admin Dashboard</h2>
@@ -37,15 +67,26 @@
         <label for="scriptContent">JS Script (without &lt;script&gt; tags):</label>
         <textarea id="scriptContent" class="form-control" rows="10" required></textarea>
       </div>
+
+      <div class="form-group">
+        <label for="position">Script Position</label>
+        <select id="position" class="form-control" required>
+          <option value="">-- Select Position --</option>
+          <option value="head">Inside &lt;head&gt; tag</option>
+          <option value="body">Inside &lt;body&gt; tag</option>
+        </select>
+      </div>
+
       <div class="form-group">
         <label for="pin">Enter Security PIN</label>
         <input id="pin" class="form-control" required />
       </div>
-      <button type="submit" class="btn btn-primary mt-2">Add Script</button>
-      <a href="admin-dashboard.html" class="btn btn-primary mt-2">Close</a>
+
+      <button type="submit" class="btn btn-primary mt-2 mb-2">Add Script</button>
+      <a href="admin-dashboard.html" class="btn btn-primary mt-2 mb-2">Close</a>
     </form>
-    <div id="scriptFormMessage" class="mt-3"></div>
   </div>
+
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -135,8 +176,9 @@
     e.preventDefault();
     const script = document.getElementById('scriptContent').value;
     const pin = document.getElementById('pin').value;
+    const position = document.getElementById('position').value;
 
-    const scriptContent = { script, pin };
+    const scriptContent = { script, pin, position };
 
     const response = await fetch('/api/add-script', {
       method: 'POST',
@@ -144,16 +186,20 @@
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
-      body: JSON.stringify({ scriptContent })
+      body: JSON.stringify(scriptContent)
     });
 
     const result = await response.json();
+    console.log('result:', result);
     const msgDiv = document.getElementById('scriptFormMessage');
 
-    if (result.status === 'success') {
-      msgDiv.innerHTML = '<div class="alert alert-success">Script added successfully!</div>';
+    if (response.ok) {
+      document.getElementById('successModalBody').textContent = result.message;
+      $('#successModal').modal('show');
     } else {
-      msgDiv.innerHTML = '<div class="alert alert-danger">Failed to add script.</div>';
+      const errorMessage = result.error || 'Failed to add script.';
+      document.getElementById('errorModalBody').textContent = errorMessage;
+      $('#errorModal').modal('show');
     }
   });
 </script>
@@ -183,6 +229,40 @@
     }
   });
 </script>
+
+<!-- Error Message Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="errorModalBody">
+        <!-- message will go here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="successModalBody">
+        <!-- Success message will go here -->
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

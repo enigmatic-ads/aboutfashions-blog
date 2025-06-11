@@ -19,6 +19,35 @@
   </style>
 </head>
 <body>
+    <script>
+    async function verifyAuth() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/verify-token', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          localStorage.removeItem('token');
+          window.location.href = 'index.html';
+        }
+      } catch (err) {
+        console.error('Token verification failed:', err);
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+      }
+    }
+
+    verifyAuth();
+  </script>
   <div class="mr-4">
     <a href="admin-dashboard.html" class="btn btn-primary">Back</a>
   </div>
