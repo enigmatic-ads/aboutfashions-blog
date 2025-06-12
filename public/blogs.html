@@ -26,16 +26,16 @@
   <header class="">
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="index.html"><h2>About Fashions<em>.</em></h2></a>
+        <a class="navbar-brand" href="/"><h2>About Fashions<em>.</em></h2></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-            <li class="nav-item active"><a class="nav-link" href="blogs.html">Blogs</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about">About Us</a></li>
+            <li class="nav-item active"><a class="nav-link" href="blogs">Blogs</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact">Contact Us</a></li>
           </ul>
         </div>
       </div>
@@ -242,7 +242,7 @@
       const categories = [...new Set(posts.map(p => p.category))];
       categories.forEach(category => {
         const li = document.createElement('li');
-        li.innerHTML = `<a href="blogs.html?category=${encodeURIComponent(category)}">- ${category}</a>`;
+        li.innerHTML = `<a href="blogs?category=${encodeURIComponent(category)}">- ${category}</a>`;
         categoryList.appendChild(li);
       });
 

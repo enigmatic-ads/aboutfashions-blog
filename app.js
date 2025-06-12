@@ -13,6 +13,16 @@ const PORT = 4000;
 const POSTS_FILE = path.join(__dirname, 'public', 'posts.json');
 const JWT_SECRET = process.env.JWT_SECRET;
 // Middleware
+app.use((req, res, next) => {
+  if (!path.extname(req.path)) {
+    const filePath = path.join(__dirname, 'public', req.path + '.html');
+    if (fs.existsSync(filePath)) {
+      return res.sendFile(filePath);
+    }
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 

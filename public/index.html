@@ -30,7 +30,6 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-stand-blog.css">
@@ -56,25 +55,25 @@
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>About Fashions<em>.</em></h2></a>
+          <a class="navbar-brand" href="/"><h2>About Fashions<em>.</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home
+                <a class="nav-link" href="/">Home
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="about">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="blogs.html">Blogs</a>
+                <a class="nav-link" href="blogs">Blogs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact Us</a>
+                <a class="nav-link" href="contact">Contact Us</a>
               </li>
             </ul>
           </div>
@@ -82,14 +81,13 @@
       </nav>
     </header>
 
-
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="main-banner header-text">
       <div class="container-fluid">
         <div class="owl-banner owl-carousel">
           <div class="item">
-            <a href="blogs.html?category=Fashion">
+            <a href="blogs?category=Fashion">
               <img src="assets/images/carousel01.jpg" alt="">
             </a>
             <div class="item-content">
@@ -101,7 +99,7 @@
             </div>
           </div>
           <div class="item">
-            <a href="blogs.html?category=Shopping">
+            <a href="blogs?category=Shopping">
               <img src="assets/images/carousel02.jpg" alt="">
             </a>
             <div class="item-content">
@@ -113,7 +111,7 @@
             </div>
           </div>
           <div class="item">
-            <a href="blogs.html?category=Lifestyle">
+            <a href="blogs?category=Lifestyle">
               <img src="assets/images/carousel04.jpg" alt="">
             </a>
             <div class="item-content">
@@ -134,8 +132,6 @@
               </div>
             </div>
           </div>
-         
-          
         </div>
       </div>
     </div>
@@ -147,14 +143,9 @@
           <div class="col-lg-12">
             <div class="main-content">
               <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                   <span>Welcome to ABOUTFASHIONS !</span>
                   <h4>Where Trends Meet Timeless Elegance</h4>
-                </div>
-                <div class="col-lg-4">
-                  <div class="main-button">
-                    <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -164,9 +155,8 @@
     </section>
 
     <!-- Blog Posts Starts Here -->
-
     <section class="blog-posts">
-    <div class="container">
+      <div class="container">
         <div class="row">
           <div class="col-lg-8">
             <div class="all-blog-posts">
@@ -176,7 +166,7 @@
                 </div>
                 <div class="col-lg-12">
                   <div class="main-button">
-                    <a href="blogs.html">View All Posts</a>
+                    <a href="blogs">View All Posts</a>
                   </div>
                 </div>
               </div>
@@ -214,7 +204,6 @@
                     </div>
                   </div>
                 </div>
-                
                 <div class="col-lg-12">
                   <div class="sidebar-item tags">
                     <div class="sidebar-heading">
@@ -227,14 +216,12 @@
                     </div>
                   </div>
                 </div>
-                
-                </div>
-                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
     <!-- Blog Posts Ends Here -->
 
     <footer>
@@ -266,14 +253,14 @@
       }
     </script>
 
-<!-- Bootstrap -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Your Custom Scripts -->
-<script src="assets/js/custom.js"></script>
-<script src="assets/js/slick.js"></script>
-<script src="assets/js/isotope.js"></script>
-<script src="assets/js/accordions.js"></script>
+    <!-- Your Custom Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/accordions.js"></script>
 
     <script>
       fetch('posts.json')
@@ -344,7 +331,7 @@
           // Populate unique categories
           Array.from(allCategories).forEach(category => {
             const li = document.createElement('li');
-            li.innerHTML = `<a href="blogs.html?category=${encodeURIComponent(category)}">- ${category}</a>`;
+            li.innerHTML = `<a href="blogs?category=${encodeURIComponent(category)}">- ${category}</a>`;
             categoriesList.appendChild(li);
           });
 
@@ -354,80 +341,22 @@
             li.innerHTML = `<a href="#">${tag}</a>`;
             tagsList.appendChild(li);
           });
-
         })
         .catch(error => console.error('Error loading posts.json:', error));
-
     </script>
 
-    <!-- Login Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content p-3">
-        <div class="modal-header">
-          <h5 class="modal-title" id="loginModalLabel">Admin Login</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button>
-        </div>
-        <div class="modal-body">
-          <form id="loginForm">
-            <div class="mb-3">
-              <label for="loginUsername" class="form-label">Username</label>
-              <input type="text" class="form-control" id="loginUsername" required>
-            </div>
-            <div class="mb-3">
-              <label for="loginPassword" class="form-label">Password</label>
-              <input type="password" class="form-control" id="loginPassword" required>
-            </div>
-            <div id="loginError" class="text-danger mb-2" style="display:none;">Invalid credentials. Try again.</div>
-            <button type="submit" class="btn btn-primary w-100" style="background-color: #f48840; color: white;">Login</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const username = document.getElementById('loginUsername').value;
-  const password = document.getElementById('loginPassword').value;
-
-  try {
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      // Store the token in localStorage or cookie
-      localStorage.setItem('token', data.token);
-      window.location.href = 'admin-dashboard.html';
-    } else {
-      document.getElementById('loginError').style.display = 'block';
-    }
-  } catch (err) {
-    console.error(err);
-    document.getElementById('loginError').style.display = 'block';
-  }
-});
-</script>
-
-  <script>
-    $(window).on('load', function () {
-      $(".owl-banner").owlCarousel({
-        items: 3,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true,
-        dots: true,
-        nav: true
+    <script>
+      $(window).on('load', function () {
+        $(".owl-banner").owlCarousel({
+          items: 3,
+          loop: true,
+          autoplay: true,
+          autoplayTimeout: 3000,
+          autoplayHoverPause: true,
+          dots: true,
+          nav: true
+        });
       });
-    });
-  </script>
-
-  <body>
+    </script>
+  </body>
 </html>
