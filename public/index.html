@@ -30,7 +30,6 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-stand-blog.css">
@@ -81,7 +80,6 @@
         </div>
       </nav>
     </header>
-
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
@@ -134,8 +132,6 @@
               </div>
             </div>
           </div>
-         
-          
         </div>
       </div>
     </div>
@@ -147,14 +143,9 @@
           <div class="col-lg-12">
             <div class="main-content">
               <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                   <span>Welcome to ABOUTFASHIONS !</span>
                   <h4>Where Trends Meet Timeless Elegance</h4>
-                </div>
-                <div class="col-lg-4">
-                  <div class="main-button">
-                    <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -164,9 +155,8 @@
     </section>
 
     <!-- Blog Posts Starts Here -->
-
     <section class="blog-posts">
-    <div class="container">
+      <div class="container">
         <div class="row">
           <div class="col-lg-8">
             <div class="all-blog-posts">
@@ -214,7 +204,6 @@
                     </div>
                   </div>
                 </div>
-                
                 <div class="col-lg-12">
                   <div class="sidebar-item tags">
                     <div class="sidebar-heading">
@@ -227,14 +216,12 @@
                     </div>
                   </div>
                 </div>
-                
-                </div>
-                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
     <!-- Blog Posts Ends Here -->
 
     <footer>
@@ -266,14 +253,14 @@
       }
     </script>
 
-<!-- Bootstrap -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Your Custom Scripts -->
-<script src="assets/js/custom.js"></script>
-<script src="assets/js/slick.js"></script>
-<script src="assets/js/isotope.js"></script>
-<script src="assets/js/accordions.js"></script>
+    <!-- Your Custom Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/accordions.js"></script>
 
     <script>
       fetch('posts.json')
@@ -354,80 +341,22 @@
             li.innerHTML = `<a href="#">${tag}</a>`;
             tagsList.appendChild(li);
           });
-
         })
         .catch(error => console.error('Error loading posts.json:', error));
-
     </script>
 
-    <!-- Login Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content p-3">
-        <div class="modal-header">
-          <h5 class="modal-title" id="loginModalLabel">Admin Login</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button>
-        </div>
-        <div class="modal-body">
-          <form id="loginForm">
-            <div class="mb-3">
-              <label for="loginUsername" class="form-label">Username</label>
-              <input type="text" class="form-control" id="loginUsername" required>
-            </div>
-            <div class="mb-3">
-              <label for="loginPassword" class="form-label">Password</label>
-              <input type="password" class="form-control" id="loginPassword" required>
-            </div>
-            <div id="loginError" class="text-danger mb-2" style="display:none;">Invalid credentials. Try again.</div>
-            <button type="submit" class="btn btn-primary w-100" style="background-color: #f48840; color: white;">Login</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const username = document.getElementById('loginUsername').value;
-  const password = document.getElementById('loginPassword').value;
-
-  try {
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      // Store the token in localStorage or cookie
-      localStorage.setItem('token', data.token);
-      window.location.href = 'admin-dashboard.html';
-    } else {
-      document.getElementById('loginError').style.display = 'block';
-    }
-  } catch (err) {
-    console.error(err);
-    document.getElementById('loginError').style.display = 'block';
-  }
-});
-</script>
-
-  <script>
-    $(window).on('load', function () {
-      $(".owl-banner").owlCarousel({
-        items: 3,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true,
-        dots: true,
-        nav: true
+    <script>
+      $(window).on('load', function () {
+        $(".owl-banner").owlCarousel({
+          items: 3,
+          loop: true,
+          autoplay: true,
+          autoplayTimeout: 3000,
+          autoplayHoverPause: true,
+          dots: true,
+          nav: true
+        });
       });
-    });
-  </script>
-
-  <body>
+    </script>
+  </body>
 </html>
