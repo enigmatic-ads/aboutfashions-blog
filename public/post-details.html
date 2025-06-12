@@ -229,7 +229,7 @@
 
         document.querySelector('.sidebar-item.categories .content ul').innerHTML =
           Array.from(categoriesSet).sort().map(cat =>
-            `<li><a href="blogs.html?category=${encodeURIComponent(cat)}">- ${cat}</a></li>`).join('');
+            `<li><a href="blogs?category=${encodeURIComponent(cat)}">- ${cat}</a></li>`).join('');
 
         document.querySelector('.sidebar-item.tags .content ul').innerHTML =
           Array.from(tagsSet).sort().map(tag =>

@@ -242,7 +242,7 @@
       const categories = [...new Set(posts.map(p => p.category))];
       categories.forEach(category => {
         const li = document.createElement('li');
-        li.innerHTML = `<a href="blogs.html?category=${encodeURIComponent(category)}">- ${category}</a>`;
+        li.innerHTML = `<a href="blogs?category=${encodeURIComponent(category)}">- ${category}</a>`;
         categoryList.appendChild(li);
       });
 
