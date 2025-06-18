@@ -120,7 +120,8 @@
         .replace(/<\/p>/g, '<br>')
         .replace(/<h[1-6]>/g, '')
         .replace(/<\/h[1-6]>/g, '')
-        .replace(/<p class="ql-align-justify">/g, '');
+        .replace(/<p class="ql-align-justify">/g, '')
+        .replace(/<br>/g, '<br><br>');
       const category = document.getElementById("category").value;
       const tags = document.getElementById("tags").value.split(",").map(t => t.trim());
 
