@@ -76,9 +76,10 @@
         <label for="category">Category</label>
         <select id="category" class="form-control" required>
           <option value="">Select Category</option>
-          <option value="Fashion">Fashion</option>
-          <option value="Lifestyle">Lifestyle</option>
+          <option value="Fashion Trends">Fashion Trends</option>
+          <option value="Style Tips">Style Tips</option>
           <option value="Beauty & Makeup">Beauty & Makeup</option>
+          <option value="Shopping">Shopping</option>
         </select>
       </div>
       <div class="form-group">
@@ -117,11 +118,16 @@
       const summary = document.getElementById("summary").value;
       const content = quill.root.innerHTML
         .replace(/<p>/g, '')
-        .replace(/<\/p>/g, '<br>')
+        .replace(/<\/p>/g, '')
+        .replace(/<p/g, '<div')
+        .replace(/<\/p/g, '</div')
         .replace(/<h[1-6]>/g, '')
         .replace(/<\/h[1-6]>/g, '')
         .replace(/<p class="ql-align-justify">/g, '')
-        .replace(/<br>/g, '<br><br>');
+        .replace(/<span style="color: rgb(0, 0, 0);">&nbsp;/g, ' ')
+        .replace(/&nbsp;<span style="color: rgb(0, 0, 0);">/g, ' ')
+        .replace(/&nbsp;<\/span>/g, ' ')
+        .replace(/<\/span>&nbsp;/g, ' ');
       const category = document.getElementById("category").value;
       const tags = document.getElementById("tags").value.split(",").map(t => t.trim());
 
