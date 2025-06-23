@@ -279,12 +279,14 @@
           const allCategories = new Set();
           const allTags = new Set();
 
+          posts.forEach(post => {
+            allCategories.add(post.category);
+            post.tags.forEach(tag => allTags.add(tag));
+          });
+
           posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
           posts.slice(0, 4).forEach(post => {
-            allCategories.add(post.category);
-            post.tags.forEach(tag => allTags.add(tag));
-
             const tagsHTML = post.tags.map(tag => `<li><a href="#">${tag}</a></li>`).join(', ');
 
             const blogCard = document.createElement('div');
@@ -298,7 +300,7 @@
                 <span>${post.category}</span>
                 <a href="${encodeURIComponent(post.slug)}"><h4>${post.title}</h4></a>
                 <ul class="post-info">
-                  <li>${post.date}</li>
+                  <li>${post.elapsedTime}</li>
                 </ul>
                 <p>${post.summary}...<a href="${encodeURIComponent(post.slug)}">Read more</a></p>
                 <div class="post-options">
