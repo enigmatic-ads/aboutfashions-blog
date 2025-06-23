@@ -11,9 +11,8 @@
       "Style Tips"
     ],
     "date": "May 31, 2020",
-    "link": "post-details.html",
     "category": "Fashion",
-    "banner": true
+    "elapsedTime": "few months ago"
   },
   {
     "id": "2",
@@ -27,9 +26,8 @@
       "Style Tips"
     ],
     "date": "May 25, 2021",
-    "link": "post-details.html",
     "category": "Lifestyle",
-    "banner": true
+    "elapsedTime": "a month ago"
   },
   {
     "id": "3",
@@ -43,9 +41,8 @@
       "Style Tips"
     ],
     "date": "May 20, 2020",
-    "link": "post-details.html",
     "category": "Fashion",
-    "banner": true
+    "elapsedTime": "few months ago"
   },
   {
     "id": "4",
@@ -59,9 +56,8 @@
       "Style Tips"
     ],
     "date": "May 31, 2018",
-    "link": "post-details.html",
     "category": "Fashion",
-    "banner": false
+    "elapsedTime": "few months ago"
   },
   {
     "id": "5",
@@ -75,9 +71,8 @@
       "Makeup"
     ],
     "date": "May 27, 2018",
-    "link": "post-details.html",
     "category": "Beauty & Makeup",
-    "banner": false
+    "elapsedTime": "an year ago"
   },
   {
     "id": "8",
@@ -91,9 +86,8 @@
       "Vintage Style"
     ],
     "date": "May 28, 2025",
-    "link": "post-details.html",
     "category": "Fashion",
-    "banner": false
+    "elapsedTime": "a month ago"
   },
   {
     "id": "9",
@@ -107,9 +101,8 @@
       "Makeup"
     ],
     "date": "May 29, 2025",
-    "link": "post-details.html",
     "category": "Beauty & Makeup",
-    "banner": false
+    "elapsedTime": "few days ago"
   },
   {
     "id": "10",
@@ -122,9 +115,8 @@
       "Shopping Tips"
     ],
     "date": "May 30, 2025",
-    "link": "post-details.html",
     "category": "Shopping",
-    "banner": false
+    "elapsedTime": "few days ago"
   },
   {
     "id": "14",
@@ -138,6 +130,7 @@
     "tags": [
       "Makeup",
       "Beauty Tips"
-    ]
+    ],
+    "elapsedTime": "few days ago"
   }
 ]
