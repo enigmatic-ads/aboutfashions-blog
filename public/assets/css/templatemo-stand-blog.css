@@ -253,7 +253,13 @@ header .navbar {
 	line-height: 30px;
 	font-family: 'FontAwesome';
 }
-
+.navbar .container-fluid {
+	padding-left: 50px;
+	padding-right: 30px;
+}
+.mobile-search-toggle {
+  margin-left: 250px;
+}
 
 
 /* Banner Style */
@@ -385,6 +391,54 @@ header .navbar {
 .call-to-action .main-content .main-button {
 	text-align: right;
 	margin-top: 12px;
+}
+
+/* Google search  */
+
+form {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+input[type="text"] {
+	padding: 10px 15px;
+	border-radius: 10px;
+	border: 2px solid #ccc;
+	font-size: 16px;
+	width: 65%;
+	max-width: 220px;
+	transition: border-color 0.3s ease;
+	height: 40px;
+}
+
+input[type="text"]:focus {
+	border-color: #0077cc;
+	outline: none;
+}
+
+button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 10px;
+	background-color: #0077cc;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	height: 40px;
+}
+
+button:hover {
+	background-color: #005fa3;
+}
+
+#mobileSearch input {
+width: 70%;
+  transition: all 0.3s ease;
+
 }
 
 
