@@ -14,6 +14,7 @@
     </script>
 
     <meta name="mnd-ver" content="ap9xepqobroeci9wq8z8xa" />
+    <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="348521"></script>
 
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
@@ -31,6 +32,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
     <title>AboutFashions</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Owl Carousel JS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
@@ -61,34 +64,57 @@
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <header class="">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="/"><h2>About Fashions<em>.</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+  <header>
+  <nav class="navbar navbar-expand-xl">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+      <!-- Left: Brand -->
+      <a class="navbar-brand mb-0 h1" href="/">
+        <h2>About Fashions<em>.</em></h2>
+      </a>
+
+      <!-- Right: Search icon + Hamburger (only visible on small screens) -->
+      <div class="d-flex d-xl-none mobile-search-toggle">
+        <button id="searchToggle" class="btn btn-link text-dark mr-2" type="button">
+          <i class="fas fa-search"></i>
+        </button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <!-- Collapsible Navbar Items + Desktop Search (shown on xl+) -->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact">Contact Us</a></li>
+        </ul>
+
+        <!-- Desktop Search -->
+        <form action="search" method="get" target="_blank" class="form-inline ml-lg-3 d-none d-xl-flex">
+          <input type="text" name="q" class="form-control mr-2" placeholder="Search web..." required />
+          <button type="submit" class="btn btn-outline-primary">
+            <i class="fas fa-search"></i>
           </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="about">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="blogs">Blogs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact">Contact Us</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mobile Search Bar -->
+    <div id="mobileSearch" class="d-none w-100 px-3 pb-2 d-xl-none">
+      <form action="search" method="get" target="_blank" class="form-inline justify-content-end">
+        <input type="text" name="q" class="form-control mr-2 w-75" placeholder="Search..." required />
+        <button type="submit" class="btn btn-primary">Go</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
@@ -148,13 +174,15 @@
     </div>
     <!-- Banner Ends Here -->
 
+    <div data-banner-id="6081754"></div>
+
     <section class="call-to-action">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="main-content">
               <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                   <span>Welcome to ABOUTFASHIONS !</span>
                   <h4>Where Trends Meet Timeless Elegance</h4>
                 </div>
@@ -392,5 +420,12 @@
           });
         });
     </script>
+
+    <script>
+  document.getElementById('searchToggle').addEventListener('click', function () {
+    const mobileSearch = document.getElementById('mobileSearch');
+    mobileSearch.classList.toggle('d-none');
+  });
+</script>
   </body>
 </html>
