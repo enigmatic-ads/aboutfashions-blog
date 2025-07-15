@@ -1,6 +1,4 @@
-/* * {
-  outline: 1px solid red;
-} */
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;
@@ -160,7 +158,7 @@ h1,h2,h3,h4,h5,h6 {
 [data-banner-id="6081754"] {
   max-width: 100%;
   overflow-x: hidden;
-  display: block;;
+  display: block;
 }
 
 
