@@ -95,7 +95,7 @@
         </ul>
 
         <!-- Desktop Search -->
-        <form action="search" method="get" target="_blank" class="form-inline ml-lg-3 d-none d-xl-flex">
+        <form action="search" method="get" target="_blank" class="search-form form-inline ml-lg-3 d-none d-xl-flex">
           <input type="text" name="q" class="form-control mr-2" placeholder="Search web..." required />
           <button type="submit" class="btn btn-outline-primary">
             <i class="fas fa-search"></i>
@@ -278,6 +278,15 @@
             </ul>
           </div>
           <div class="col-lg-12">
+            <ul class="social-icons">
+              <li><a href="about">About Us</a></li>
+              <li><a href="blogs">Blogs</a></li>
+              <li><a href="contact">Contact Us</a></li>
+              <li><a href="privacy-policy">Privacy Policy</a></li>
+              <li><a href="cookie-policy">Cookie Policy</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-12">
             <div class="copyright-text">
               <p>Copyright 2025 @ AboutFashions | All rights reserved </p>
             </div>
@@ -305,8 +314,29 @@
 
     <!-- Bootstrap -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+      $(document).ready(function () {
+        $(".owl-banner").owlCarousel({
+          items: 3,
+          loop: true,
+          margin: 8,
+          autoplay: true,
+          autoplayTimeout: 4000,
+          autoplayHoverPause: true,
+          dots: true,
+          nav: true,
+          responsive: {
+            0: { items: 1 },
+            768: { items: 2 },
+            992: { items: 3 }
+          },
+          smartSpeed: 1000,
+        });
+      });
+    </script>
 
-    <!-- Your Custom Scripts -->
+        <!-- Your Custom Scripts -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/slick.js"></script>
     <script src="assets/js/isotope.js"></script>
@@ -403,27 +433,6 @@
           });
         })
         .catch(error => console.error('Error loading posts.json:', error));
-    </script>
-    
-    <script>
-      $(window).on('load', function () {
-          $(".owl-banner").owlCarousel({
-            items: 3,
-            loop: true,
-            margin: 12,
-            autoplay: true,
-            autoplayTimeout: 3000,
-            autoplayHoverPause: true,
-            dots: true,
-            nav: true,
-            responsive: {
-              0: { items: 1 },
-              768: { items: 2 },
-              992: { items: 3 }
-            },
-            smartSpeed: 1000
-          });
-        });
     </script>
 
     <script>
