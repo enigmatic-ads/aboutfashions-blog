@@ -406,7 +406,7 @@ header .navbar {
 
 /* Google search  */
 
-form {
+.search-form {
 	margin-top: 10px;
 	display: flex;
 	justify-content: center;
@@ -414,7 +414,7 @@ form {
 	flex-wrap: wrap;
 }
 
-input[type="text"] {
+.search-form input[type="text"] {
 	padding: 10px 15px;
 	border-radius: 10px;
 	border: 2px solid #ccc;
@@ -425,12 +425,12 @@ input[type="text"] {
 	height: 40px;
 }
 
-input[type="text"]:focus {
+.search-form [type="text"]:focus {
 	border-color: #0077cc;
 	outline: none;
 }
 
-button {
+.search-form button {
 	padding: 10px 20px;
 	border: none;
 	border-radius: 10px;
@@ -442,7 +442,7 @@ button {
 	height: 40px;
 }
 
-button:hover {
+.search-form button:hover {
 	background-color: #005fa3;
 }
 
