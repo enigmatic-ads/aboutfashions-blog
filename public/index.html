@@ -93,7 +93,6 @@
           <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about">About Us</a></li>
           <li class="nav-item"><a class="nav-link" href="blogs">Blogs</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact">Contact Us</a></li>
         </ul>
 
         <!-- Desktop Search -->
@@ -378,7 +377,7 @@
 
           posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-          posts.slice(0, 4).forEach(post => {
+          posts.slice(0, 9).forEach(post => {
             const tagsHTML = post.tags.map(tag => `<li><a href="#">${tag}</a></li>`).join(', ');
 
             const blogCard = document.createElement('div');
