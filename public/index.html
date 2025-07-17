@@ -200,6 +200,15 @@
     <section class="blog-posts">
       <div class="container">
         <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
+              <h2>Top Stories</h2>
+              <div id="top-stories" class="row mb-4"></div>
+            </div>
+          </div>
+        </div>
+        <div class="main-content">
+        <div class="row">
           <div class="col-lg-8">
             <div class="all-blog-posts">
               <div class="row">
@@ -258,9 +267,11 @@
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
     <!-- Blog Posts Ends Here -->
@@ -350,6 +361,27 @@
 
           const allCategories = new Set();
           const allTags = new Set();
+
+          const topStoriesPosts = [1, 19, 2, 17];
+
+          const topStoriesContainer = document.getElementById('top-stories');
+          topStoriesPosts.forEach(id => {
+            const post = posts.find(p => p.id == id);
+            if (!post) return;
+
+            const storyDiv = document.createElement('div');
+            storyDiv.className = 'col-md-6'; // 2 per row on large screens
+            storyDiv.innerHTML = `
+              <div class="top-story">
+                <a href="${encodeURIComponent(post.slug)}">
+                  <img src="${post.image}" alt="${post.title}">
+                  <div class="top-story-title">${post.title}</div>
+                </a>
+              </div>
+            `;
+            topStoriesContainer.appendChild(storyDiv);
+          });
+
 
           posts.forEach(post => {
             allCategories.add(post.category);
