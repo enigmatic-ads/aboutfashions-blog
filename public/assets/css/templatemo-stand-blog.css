@@ -8,7 +8,8 @@ body {
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;}
+  -moz-osx-font-smoothing: grayscale;
+}
 p {
 	margin-bottom: 0px;
 	font-size: 15px;
@@ -476,7 +477,8 @@ width: 70%;
 
 .most-popular-section {
   margin-top: 100px;
-  background-color: #aaaaaa;
+  /* background-color: #aaaaaa; */
+  background-color: #dedede;
   padding-top: 70px;
   padding-bottom: 50px;
 
@@ -492,7 +494,9 @@ width: 70%;
 
 .top-stories-section {
   margin-top: 100px;
-  background-color: #aaaaaa;
+  /* background-color: #aaaaaa; */
+    /* background-color: #dad9d9; */
+  background-color: #dedede;
   padding-top: 70px;
   padding-bottom: 50px;
 }
