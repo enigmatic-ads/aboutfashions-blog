@@ -210,10 +210,9 @@
     <ins class="eas6a97888e20" data-zoneid="5678434"></ins> 
     <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
 
-    <!-- Blog Posts Starts Here -->
-    <section class="blog-posts">
-      <div class="container">
-        <div class="row">
+    <section class="top-stories-section">
+    <div class="container">
+    <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
               <h2>Top Stories</h2>
@@ -221,6 +220,12 @@
             </div>
           </div>
         </div>
+    </div>
+    </section>
+
+    <!-- Blog Posts Starts Here -->
+    <section class="blog-posts">
+      <div class="container">
         <div class="main-content">
         <div class="row">
           <div class="col-lg-8">
@@ -290,6 +295,19 @@
     </section>
     <!-- Blog Posts Ends Here -->
 
+    <section class="most-popular-section">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
+              <h2>Most Popular</h2>
+              <div id="most-popular" class="row mb-4"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </section>
+
     <div class="container-fluid trending-section">
       <div class="container">
         <h3 class="fw-bold">Trending Topics</h3>
@@ -321,6 +339,15 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="container older-posts-section">
+    <div class="row">
+      <div class="col-lg-10">
+      <h2 class="mb-4">In Focus</h2>
+      <div id="older-posts-list"></div>
+      </div>
+    </div>
     </div>
 
     <footer>
@@ -412,6 +439,7 @@
           const topStoriesPosts = [1, 19, 2, 17];
 
           const topStoriesContainer = document.getElementById('top-stories');
+          
           topStoriesPosts.forEach(id => {
             const post = posts.find(p => p.id == id);
             if (!post) return;
@@ -429,6 +457,47 @@
             topStoriesContainer.appendChild(storyDiv);
           });
 
+          const mostPopularPosts = [16, 18, 20, 7];
+
+          const mostPopularContainer = document.getElementById('most-popular');
+
+          mostPopularPosts.forEach(id => {
+            const post = posts.find(p => p.id == id);
+            if (!post) return;
+
+            const storyDiv = document.createElement('div');
+            storyDiv.className = 'col-md-6'; // 2 per row on large screens
+            storyDiv.innerHTML = `
+              <div class="top-story">
+                <a href="${encodeURIComponent(post.slug)}">
+                  <img src="${post.image}" alt="${post.title}">
+                  <div class="top-story-title">${post.title}</div>
+                </a>
+              </div>
+            `;
+            mostPopularContainer.appendChild(storyDiv);
+          });
+
+          const olderPostsIds = [1, 8, 9, 4, 5];
+
+          const olderPostsContainer = document.getElementById('older-posts-list');
+          const olderPosts = posts.filter(p => olderPostsIds.includes(p.id) || olderPostsIds.includes(+p.id));
+
+          olderPosts.forEach(post => {
+            const html = `
+              <div class="older-post d-flex mb-4">
+                <div class="older-post-img">
+                  <a href="post-details.html?id=${post.id}">
+                    <img src="${post.image}" alt="${post.title}">
+                  </a>
+                </div>
+                <div class="older-post-text d-flex align-items-center px-3">
+                  <h5 class="m-0"><a href="${encodeURIComponent(post.slug)}">${post.title}</a></h5>
+                </div>
+              </div>
+            `;
+            olderPostsContainer.innerHTML += html;
+          });
 
           posts.forEach(post => {
             allCategories.add(post.category);
@@ -437,7 +506,7 @@
 
           posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-          posts.slice(0, 9).forEach(post => {
+          posts.slice(0, 5).forEach(post => {
             const tagsHTML = post.tags.map(tag => `<li><a href="#">${tag}</a></li>`).join(', ');
 
             const blogCard = document.createElement('div');
