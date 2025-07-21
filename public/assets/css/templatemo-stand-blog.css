@@ -495,7 +495,7 @@ width: 70%;
 .top-stories-section {
   margin-top: 100px;
   /* background-color: #aaaaaa; */
-    /* background-color: #dad9d9; */
+  /* background-color: #dad9d9; */
   background-color: #dedede;
   padding-top: 70px;
   padding-bottom: 50px;
@@ -961,7 +961,7 @@ ul.page-numbers li a:hover {
 }
 
 .trending-section .image-grid {
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 
 .trend-card {
@@ -1420,4 +1420,37 @@ footer p a:hover {
 		margin-left: 0px;
 		margin-top: 60px;
 	}
+}
+
+@media (max-width: 768px) {
+  .older-post {
+    flex-direction: column;
+  }
+
+  .older-post-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .older-post-text {
+    padding: 15px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .older-posts-section {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .older-posts-section {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .older-post-text h5 {
+    font-size: 1rem;
+  }
 }
