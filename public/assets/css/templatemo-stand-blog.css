@@ -495,7 +495,7 @@ width: 70%;
 .top-stories-section {
   margin-top: 100px;
   /* background-color: #aaaaaa; */
-    /* background-color: #dad9d9; */
+  /* background-color: #dad9d9; */
   background-color: #dedede;
   padding-top: 70px;
   padding-bottom: 50px;
@@ -961,7 +961,7 @@ ul.page-numbers li a:hover {
 }
 
 .trending-section .image-grid {
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 
 .trend-card {
