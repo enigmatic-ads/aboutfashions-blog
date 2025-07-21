@@ -1421,3 +1421,36 @@ footer p a:hover {
 		margin-top: 60px;
 	}
 }
+
+@media (max-width: 768px) {
+  .older-post {
+    flex-direction: column;
+  }
+
+  .older-post-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .older-post-text {
+    padding: 15px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .older-posts-section {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .older-posts-section {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .older-post-text h5 {
+    font-size: 1rem;
+  }
+}
