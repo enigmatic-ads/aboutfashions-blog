@@ -578,6 +578,49 @@ width: 70%;
 	border-bottom: 1px solid #eee;
 }
 
+.blog-posts .down-content h1 {
+	font-size: 30px;
+	font-weight: 900;
+}
+
+.blog-posts .down-content h2 {
+	font-size: 26px;
+	font-weight: 700;
+}
+
+.blog-posts .down-content h3 {
+	font-size: 22px;
+	font-weight: 600;
+}
+
+.blog-posts .down-content h4 {
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.blog-posts .down-content img {
+	width: 100%;
+	height: auto;
+}
+
+.blog-post .down-content button {
+	display: inline-block;
+	background-color: #f48840;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 12px 20px;
+	text-transform: uppercase;
+	transition: all .3s;
+	border: none;
+	outline: none;
+}
+
+.blog-post .down-content button:hover {
+	background-color: #f2a877;
+	cursor: pointer;
+}
+
 .blog-posts .down-content span {
 	font-size: 18px;
 	text-transform: uppercase;
