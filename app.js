@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const multer = require('multer');
 
 const app = express();
-const PORT = 7000;
+const PORT = 4000;
 
 // Path to posts.json
 const POSTS_FILE = path.join(__dirname, 'public', 'posts.json');
