@@ -132,6 +132,42 @@ function slugify(text) {
     .replace(/-+/g, '-');
 }
 
+const cache = {};
+
+app.get("/api/search", async (req, res) => {
+  const query = req.query.q;
+
+  if (!query) {
+    return res.status(400).json({ error: "Query is required" });
+  }
+
+  // If cached
+  if (cache[query]) {
+    console.log("Returning from cache:", query);
+    return res.json(cache[query]);
+  }
+
+  try {
+    console.log('Fetching from google api, query:', query);
+    const apiKey = "AIzaSyDjeSZo1-2h0hUAluik6DcoS6A13ZWVMm0";
+    const cx = "a514ddc56f8024b45";
+
+    const response = await fetch(
+      `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`
+    );
+
+    const data = await response.json();
+
+    // Save in cache
+    cache[query] = data;
+
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch results" });
+  }
+});
+
 app.put('/api/blogs/:id', checkAuth, (req, res) => {
   try {
   const blogId = parseInt(req.params.id, 10);
