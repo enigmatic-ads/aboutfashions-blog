@@ -132,7 +132,9 @@ function slugify(text) {
     .replace(/-+/g, '-');
 }
 
-const cache = {};
+const searchCache = {};
+
+const imageCache = {};
 
 app.get("/api/search", async (req, res) => {
   const query = req.query.q;
@@ -141,27 +143,46 @@ app.get("/api/search", async (req, res) => {
     return res.status(400).json({ error: "Query is required" });
   }
 
-  // If cached
-  if (cache[query]) {
-    console.log("Returning from cache:", query);
-    return res.json(cache[query]);
-  }
+  const apiKey = "AIzaSyDjeSZo1-2h0hUAluik6DcoS6A13ZWVMm0";
+  const cx = "a514ddc56f8024b45";
 
   try {
-    console.log('Fetching from google api, query:', query);
-    const apiKey = "AIzaSyDjeSZo1-2h0hUAluik6DcoS6A13ZWVMm0";
-    const cx = "a514ddc56f8024b45";
+    let searchResults, imageResults;
 
-    const response = await fetch(
-      `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`
+    // --- Normal search ---
+    if (searchCache[query]) {
+      console.log("Returning SEARCH from cache:", query);
+      searchResults = searchCache[query];
+    } else {
+      console.log("Fetching SEARCH from Google API:", query);
+      const response = await fetch(
+        `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`
+      );
+      searchResults = await response.json();
+      searchCache[query] = searchResults;
+    }
+
+    // --- Image search ---
+    if (imageCache[query]) {
+      console.log("Returning IMAGES from cache:", query);
+      imageResults = imageCache[query];
+    } else {
+      console.log("Fetching IMAGES from Google API:", query);
+      const imgResponse = await fetch(
+        `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&searchType=image&q=${encodeURIComponent(query)}`
+      );
+      imageResults = await imgResponse.json();
+      imageCache[query] = imageResults;
+    }
+
+    //Fetch suggestions
+    const suggestionsResponse = await fetch(
+      `https://suggestqueries.google.com/complete/search?client=firefox&q=${encodeURIComponent(query)}`
     );
+    suggestionsResult = await suggestionsResponse.json();
 
-    const data = await response.json();
+    res.json({ searchResults, imageResults, suggestionsResult });
 
-    // Save in cache
-    cache[query] = data;
-
-    res.json(data);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to fetch results" });
