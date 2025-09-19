@@ -4,33 +4,50 @@
   <meta charset="UTF-8" />
   <title>Search Results</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
 
   <style>
+
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #fff;
       color: #202124;
       margin: 0;
-      padding: 2 rem;
+      padding: 1rem;
       line-height: 1.6;
     }
 
     /* Search bar container */
     .search-container {
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
+      margin-left: 2vw;
+      margin-right: 30vw;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
+    .search-logo {
+      height: 25px;
+      width: auto;
     }
 
     .search-box {
-      width: 50%;
+      width: 100%;
       display: flex;
       border: 1px solid #dfe1e5;
-      border-radius: 24px;
-      box-shadow: none;
-      padding: 5px 10px;
+      border-radius: 30px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      padding: 8px 10px;
+      transition: box-shadow 0.3s ease;
     }
 
     .search-box input {
@@ -51,8 +68,22 @@
       color: #3c4043;
     }
 
+    .search-box:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
     .search-box button:hover {
       background-color: #f1f3f4;
+    }
+
+    .search-box i {
+      font-size: 1.2rem;
+    }
+
+    hr {
+      border: none; 
+      height: 1px;
+      background-color: #ddd;
     }
 
     h2 {
@@ -90,30 +121,193 @@
       color: #4d5156;
       margin: 5px 0 0;
     }
+
+    .result {
+      margin-left: 10vw;
+      margin-right: 40vw;
+    }
+
+    .images-section {
+      margin-left: 10vw;
+      margin-right: 30vw;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .images-section h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #5f6368;
+    }
+
+    .images-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding-bottom: 10px;
+    }
+
+    .images-container img {
+      flex: 0 0 auto;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .suggestions-section {
+      margin-left: 10vw;
+      margin-right: 40vw;
+      margin-bottom: 30px;
+    }
+
+    .suggestions-section h3 {
+      font-size: 1rem;
+      margin: 16px 0 8px;
+      color: #70757a;
+    }
+
+    .suggestions-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .suggestion {
+      flex: 1 1 calc(50% - 8px);
+      max-width: calc(50% - 8px);
+      box-sizing: border-box;
+
+      background-color: #f1f3f4;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: #202124;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.2s;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .suggestion:hover {
+      background-color: #e8eaed;
+    }
+
+    .suggestion span {
+      transition: text-decoration 0.2s;
+    }
+
+    .suggestion:hover span {
+      text-decoration: underline;
+    }
+
+    .suggestion i {
+      flex-shrink: 0;
+      margin-left: 8px;
+      font-size: 0.85rem;
+      color: #202124;
+    }
+
+
+    /* On mobile devices, reset margin */
+    @media (max-width: 767px) {
+      .result {
+        margin-left: 20px;
+        margin-right: 40px;
+      }
+
+      .suggestions-section {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 30px;
+      }
+
+      .images-section {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .search-container {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        margin-right: 10px;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .search-box {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- Search bar -->
-  <div class="search-container">
+   <div class="search-container">
+    <img src="/assets/images/search-logo.png" alt="Logo" class="search-logo" />
     <form id="searchForm" class="search-box">
-      <input type="text" id="searchInput" placeholder="Search..." />
-      <button type="submit">Search</button>
+      <input type="text" id="searchInput" />
+      <button type="submit"><i class="fas fa-search"></i></button>
     </form>
   </div>
 
-  <h2>Search Results for: <em id="queryDisplay"></em></h2>
-  <div id="results">Loading...</div>
+  <hr>
+
+  <div id="imagesSection" class="images-section" style="display: none;">
+    <h3>Images</h3>
+    <div id="imagesContainer" class="images-container"></div>
+  </div>
+
+  <div id="results"></div>
+
+  <div id="suggestionsSection" class="suggestions-section" style="display: none;">
+    <h3>People also search for</h3>
+    <div id="suggestionsContainer" class="suggestions-container"></div>
+  </div>
 
   <script>
     function renderResults(data, query) {
-      document.getElementById('queryDisplay').innerText = query || '';
-      const resultsContainer = document.getElementById('results');
-      resultsContainer.innerHTML = '';
+      const resultsContainer = document.getElementById("results");
+      resultsContainer.innerHTML = "";
 
-      if (data.items && data.items.length > 0) {
-        data.items.forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'result';
+      // --- Show Images ---
+      const imagesSection = document.getElementById("imagesSection");
+      const imagesContainer = document.getElementById("imagesContainer");
+      imagesContainer.innerHTML = "";
+
+      if (data.imageResults.items && data.imageResults.items.length > 0) {
+        imagesSection.style.display = "block";
+
+        data.imageResults.items.forEach(img => {
+          const linkEl = document.createElement("a");
+          linkEl.href = img.image.contextLink;
+          linkEl.target = "_blank"; 
+
+          const imageEl = document.createElement("img");
+          imageEl.src = img.image.thumbnailLink;
+          imageEl.alt = img.title;
+
+          linkEl.appendChild(imageEl);
+          imagesContainer.appendChild(linkEl);
+        });
+
+      } else {
+        imagesSection.style.display = "none";
+      }
+
+      // --- Show Web Results ---
+      if (data.searchResults.items && data.searchResults.items.length > 0) {
+        data.searchResults.items.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "result";
           div.innerHTML = `
             <a href="${item.link}" target="_blank">${item.title}</a>
             <small>${item.link}</small>
@@ -122,13 +316,44 @@
           resultsContainer.appendChild(div);
         });
       } else {
-        resultsContainer.innerHTML = '<p>No results found.</p>';
+        resultsContainer.innerHTML += "<p>No results found.</p>";
+      }
+
+      // --- Show Suggestions ---
+      const suggestionsSection = document.getElementById("suggestionsSection");
+      const suggestionsContainer = document.getElementById("suggestionsContainer");
+      suggestionsContainer.innerHTML = "";
+
+      if (data.suggestionsResult && data.suggestionsResult[1] && data.suggestionsResult[1].length > 0) {
+        suggestionsSection.style.display = "block";
+
+        data.suggestionsResult[1].forEach(suggestion => {
+          const linkEl = document.createElement("a");
+          linkEl.href = `https://google.com/search?q=${encodeURIComponent(suggestion)}`;
+          linkEl.target = "_blank";
+          linkEl.className = "suggestion";
+
+          const spanText = document.createElement("span");
+          spanText.textContent = suggestion;
+
+          const icon = document.createElement("i");
+          icon.className = "fas fa-search";
+
+          linkEl.appendChild(spanText);
+          linkEl.appendChild(icon);
+
+          suggestionsContainer.appendChild(linkEl);
+        });
+
+      } else {
+        suggestionsSection.style.display = "none";
       }
     }
 
     function fetchResults(query) {
       if (!query) {
-        document.getElementById('results').innerText = 'No search query provided.';
+        document.getElementById("results").innerText =
+          "No search query provided.";
         return;
       }
 
@@ -138,23 +363,24 @@
           renderResults(data, query);
         })
         .catch(err => {
-          document.getElementById('results').innerHTML = '<p>Error loading results.</p>';
+          document.getElementById("results").innerHTML =
+            "<p>Error loading results.</p>";
           console.error(err);
         });
     }
 
     // Load initial query from URL
-    const initialQuery = new URLSearchParams(window.location.search).get('q');
-    document.getElementById('searchInput').value = initialQuery || '';
+    const initialQuery = new URLSearchParams(window.location.search).get("q");
+    document.getElementById("searchInput").value = initialQuery || "";
     fetchResults(initialQuery);
 
     // Handle form submission
-    document.getElementById('searchForm').addEventListener('submit', (e) => {
+    document.getElementById("searchForm").addEventListener("submit", e => {
       e.preventDefault();
-      const query = document.getElementById('searchInput').value.trim();
+      const query = document.getElementById("searchInput").value.trim();
       if (query) {
         fetchResults(query);
-        history.pushState({}, '', `?q=${encodeURIComponent(query)}`);
+        history.pushState({}, "", `?q=${encodeURIComponent(query)}`);
       }
     });
   </script>
