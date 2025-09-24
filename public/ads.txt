@@ -1899,3 +1899,5 @@ openx.com, 540170114, RESELLER, 6a698e2ec38604c6
 instreamatic.com, 106, RESELLER
 adswizz.com, 590, RESELLER
 zetaglobal.net, 546, RESELLER
+
+google.com, pub-1200789092270135, DIRECT, f08c47fec0942fa0
